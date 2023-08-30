@@ -16,13 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
-app.use(cors());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  next();
-});
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 // routes
 routes(app);
