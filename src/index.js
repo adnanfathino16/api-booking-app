@@ -16,7 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 app.use("/uploads", express.static("uploads"));
-app.use(cors());
+app.use(
+  cors({
+    methods: "GET, PUT, POST, DELETE", // Atur metode HTTP yang diperbolehkan
+    allowedHeaders: "Content-Type, Authorization", // Atur header yang diperbolehkan
+  })
+);
 
 // routes
 routes(app);
